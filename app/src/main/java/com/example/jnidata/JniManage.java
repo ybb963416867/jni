@@ -11,4 +11,6 @@ public class JniManage {
     native  void  call();
 
     native  boolean   callBoolean(String string);
+
+
 }

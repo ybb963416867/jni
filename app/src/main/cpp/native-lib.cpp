@@ -1,13 +1,16 @@
 //
 // Created by hachiadmin on 2019/6/13.
-//
+//这个是linux 下jni的头文件，而java下也有jni.h头文件但是他是windows平台下的，有些地方不一样
 #include <jni.h>
+//////////////////////////
 #include <android/log.h>
+//Android 低层封装了c++的log，这个是属于宏定义
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,"FFMPEG",__VA_ARGS__)
 ////使用c++里面封装的string是要加这两
 #include <string>
 using std::string;
 ///////////////////////////////////////
-#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,"FFMPEG",__VA_ARGS__)
+
 
 extern "C"
 JNIEXPORT void JNICALL
