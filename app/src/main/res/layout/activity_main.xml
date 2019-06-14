@@ -14,4 +14,11 @@
        android:text="jni的调用"
        />
 
+   <Button
+       android:id="@+id/callObj"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="应用类型"
+       />
+
 </LinearLayout>

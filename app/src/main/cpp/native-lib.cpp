@@ -65,17 +65,22 @@ Java_com_example_jnidata_JniManage_callJavaMe(JNIEnv *env, jobject instance, jby
     LOGE("cpByteArray释放后:%s",jbyte1);
     JavaHelp *mJavaHelp=new  JavaHelp(javaVm,env,instance);
     mJavaHelp->callState(cpByteArray);
-//
-//
-
-//    env->NewByteArray()
-  //  JavaHelp *mJavaHelp=new JavaHelp(javaVm, env, instance);
-  //  mJavaHelp->callState(bytes_);
-  //  delete(mJavaHelp);
-  //  mJavaHelp=0;
-
+    delete (mJavaHelp);
+    mJavaHelp=0;
 }extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_jnidata_JniManage_release(JNIEnv *env, jobject instance) {
 
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_callObj(JNIEnv *env, jobject instance, jobject use) {
+    // TODO
+    jclass    useClazz=env->GetObjectClass(use);
+    jmethodID   getNameMId=env->GetMethodID(useClazz,"getName", "()Ljava/lang/String;");
+    jobject jobject1=env->CallObjectMethod(use,getNameMId);
+    jstring   jstring1= static_cast<jstring>(jobject1);
+    const char *c=env->GetStringUTFChars(jstring1, 0);
+    LOGE("callObj里面的Name:%s",c);
+    env->DeleteLocalRef(useClazz);
+    env->ReleaseStringUTFChars(jstring1,c);
 }

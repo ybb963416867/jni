@@ -2,6 +2,8 @@ package com.example.jnidata;
 
 import android.util.Log;
 
+import com.example.jnidata.bean.Use;
+
 public class JniManage {
 
     static {
@@ -17,6 +19,8 @@ public class JniManage {
     native  boolean   callBoolean(String string);
 
     native  void  callJavaMe(byte[] bytes);
+
+    native  void  callObj(Use  use);
 
     /**
      * @param bytes   jni 调用时不能有static
