@@ -8,9 +8,18 @@
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,"FFMPEG",__VA_ARGS__)
 ////使用c++里面封装的string是要加这两
 #include <string>
+#include "JavaHelp.h"
+
 using std::string;
 ///////////////////////////////////////
 
+JavaVM *javaVm=0;
+////////////////////////////该方法在调用System.loadLibrary("native-lib");时候会执行/////////////////////////////////////
+int JNI_OnLoad(JavaVM *vm, void *r) {
+    LOGE("JNI_OnLoad:%s","运行了");
+    javaVm = vm;
+    return JNI_VERSION_1_6;
+}
 
 extern "C"
 JNIEXPORT void JNICALL
@@ -37,4 +46,36 @@ Java_com_example_jnidata_JniManage_callBoolean(JNIEnv *env, jobject instance, js
 //    } else{
 //        return false;
 //    }
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_callJavaMe(JNIEnv *env, jobject instance, jbyteArray bytes_) {
+    LOGE("callJavaMe");
+    //jbyteArray 转为jbyte
+    jsize size = env->GetArrayLength(bytes_);
+    jbyte *bytes = env->GetByteArrayElements(bytes_, NULL);
+    env->ReleaseByteArrayElements(bytes_, bytes, 0);
+    LOGE("callJavaMe:%s", bytes);
+    LOGE("size:%d", size);
+    //jbyte 转为jbyteArray
+    jbyteArray cpByteArray = env->NewByteArray(size);
+    env->SetByteArrayRegion(cpByteArray,0,size,bytes);
+    jbyte *jbyte1 = env->GetByteArrayElements(cpByteArray, JNI_FALSE);
+    LOGE("cpByteArray:%s",jbyte1);
+    env->ReleaseByteArrayElements(cpByteArray,jbyte1,JNI_COMMIT);
+    LOGE("cpByteArray释放后:%s",jbyte1);
+    JavaHelp *mJavaHelp=new  JavaHelp(javaVm,env,instance);
+    mJavaHelp->callState(cpByteArray);
+//
+//
+
+//    env->NewByteArray()
+  //  JavaHelp *mJavaHelp=new JavaHelp(javaVm, env, instance);
+  //  mJavaHelp->callState(bytes_);
+  //  delete(mJavaHelp);
+  //  mJavaHelp=0;
+
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_release(JNIEnv *env, jobject instance) {
+
 }

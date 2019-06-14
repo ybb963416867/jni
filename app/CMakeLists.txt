@@ -9,8 +9,6 @@ add_library(
         SHARED
         ${source}
          )
-
-#avfilter avformat    avcodec  avutil  swresample swscale
 target_link_libraries(
         native-lib
            log
