@@ -17,6 +17,7 @@ using std::string;
 ///////////////////////////////////////
 
 JavaVM *javaVm=0;
+VideoTask *videoTask=0;
 ////////////////////////////该方法在调用System.loadLibrary("native-lib");时候会执行/////////////////////////////////////
 int JNI_OnLoad(JavaVM *vm, void *r) {
     LOGE("JNI_OnLoad:%s","运行了");
@@ -120,7 +121,12 @@ Java_com_example_jnidata_JniManage_createThread(JNIEnv *env, jobject instance) {
 }extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_jnidata_JniManage_threadAsy(JNIEnv *env, jobject instance) {
-   VideoTask *videoTask= new  VideoTask();
-   delete(videoTask);
-   videoTask=0;
+    if (!videoTask){
+        videoTask= new  VideoTask();
+    }else {
+        LOGE("已经有一个videoTask对象");
+    }
+
+//   delete(videoTask);
+//   videoTask=0;
 }
