@@ -76,11 +76,29 @@ JNIEXPORT void JNICALL
 Java_com_example_jnidata_JniManage_callObj(JNIEnv *env, jobject instance, jobject use) {
     // TODO
     jclass    useClazz=env->GetObjectClass(use);
+    //获取use类里面的name
     jmethodID   getNameMId=env->GetMethodID(useClazz,"getName", "()Ljava/lang/String;");
     jobject jobject1=env->CallObjectMethod(use,getNameMId);
     jstring   jstring1= static_cast<jstring>(jobject1);
     const char *c=env->GetStringUTFChars(jstring1, 0);
     LOGE("callObj里面的Name:%s",c);
+    jmethodID   getAgeMID=env->GetMethodID(useClazz,"getAge","()I");
+    jint  age=env->CallIntMethod(use,getAgeMID);
+    LOGE("age的值为：%d",age);
+    jmethodID   getMoneyMid=env->GetMethodID(useClazz,"getMoney","()F");
+    jfloat  money=env->CallFloatMethod(use,getMoneyMid);
+    LOGE("money的值为：%f",money);
+    jmethodID   getDataMid=env->GetMethodID(useClazz,"getData","()S");
+    jshort  data=env->CallShortMethod(use,getDataMid);
+    LOGE("data的值：%d",data);
+    jfieldID   ageFid=env->GetFieldID(useClazz,"age","I");
+    jint ageField=env->GetIntField(use,ageFid);
+    LOGE("ageField值：%d",ageField);
+    jfieldID nameFieldId=env->GetFieldID(useClazz,"name","Ljava/lang/String;");
+    jobject  nameFieldObj=env->GetObjectField(use,nameFieldId);
+    jstring  nameField= static_cast<jstring>(nameFieldObj);
+    const char *name1=env->GetStringUTFChars(nameField, JNI_FALSE);
+    LOGE("name1的值是：%s",name1);
     env->DeleteLocalRef(useClazz);
     env->ReleaseStringUTFChars(jstring1,c);
 }
