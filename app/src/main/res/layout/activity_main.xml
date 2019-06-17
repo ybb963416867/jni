@@ -21,4 +21,11 @@
        android:text="应用类型"
        />
 
+   <Button
+       android:id="@+id/thread"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="jni线程"
+       />
+
 </LinearLayout>

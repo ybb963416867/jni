@@ -9,7 +9,7 @@ import com.example.jnidata.bean.Use;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private  String  TAG="MainActivity";
+    private String TAG = "MainActivity";
     private JniManage jniManage;
 
     @Override
@@ -18,18 +18,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.call).setOnClickListener(this);
         findViewById(R.id.callObj).setOnClickListener(this);
+        findViewById(R.id.thread).setOnClickListener(this);
         jniManage = new JniManage();
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.call:
                 jniManage.call();
                 boolean abc = jniManage.callBoolean("abc");
-                Log.e(TAG,abc+"");
-                String   var1="中华人民共和国";
+                Log.e(TAG, abc + "");
+                String var1 = "中华人民共和国";
                 byte[] bytes = var1.getBytes();
                 jniManage.callJavaMe(bytes);
                 break;
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.callObj:
                 Use ybb = new Use("ybb", 30, 333, (short) 1);
                 jniManage.callObj(ybb);
+                break;
+
+            case R.id.thread:
+
+
+
                 break;
         }
     }
