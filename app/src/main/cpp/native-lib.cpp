@@ -9,6 +9,9 @@
 ////使用c++里面封装的string是要加这两
 #include <string>
 #include "JavaHelp.h"
+//c++的线程
+#include "pthread.h"
+#include "VideoTask.h"
 
 using std::string;
 ///////////////////////////////////////
@@ -101,4 +104,23 @@ Java_com_example_jnidata_JniManage_callObj(JNIEnv *env, jobject instance, jobjec
     LOGE("name1的值是：%s",name1);
     env->DeleteLocalRef(useClazz);
     env->ReleaseStringUTFChars(jstring1,c);
+}
+
+void *pthreadTask(void *arg) {
+    LOGE("pthreadTask:%s","线程开始运行了");
+    return 0;
+};
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_createThread(JNIEnv *env, jobject instance) {
+    pthread_t pthreadId ;
+    int pi=100;
+    pthread_create(&pthreadId, 0, pthreadTask,&pi);
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_threadAsy(JNIEnv *env, jobject instance) {
+   VideoTask *videoTask= new  VideoTask();
+   delete(videoTask);
+   videoTask=0;
 }

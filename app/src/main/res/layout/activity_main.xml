@@ -2,30 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-   <Button
-       android:id="@+id/call"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="jni的调用"
-       />
+    <Button
+        android:id="@+id/call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jni的调用" />
 
-   <Button
-       android:id="@+id/callObj"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="应用类型"
-       />
+    <Button
+        android:id="@+id/callObj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="应用类型" />
 
-   <Button
-       android:id="@+id/thread"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="jni线程"
-       />
+    <Button
+        android:id="@+id/thread"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jni线程" />
+
+    <Button
+        android:id="@+id/threadAsy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="线程同步" />
 
 </LinearLayout>

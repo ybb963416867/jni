@@ -8,8 +8,8 @@ add_library(
         native-lib
         SHARED
         ${source}
-         )
+)
 target_link_libraries(
         native-lib
-           log
+        log
 )

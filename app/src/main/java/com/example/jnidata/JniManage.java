@@ -29,4 +29,8 @@ public class JniManage {
         Log.e("ybb",new String(bytes));
     }
 
+    native void  createThread();
+
+    native void  threadAsy();
+
 }
