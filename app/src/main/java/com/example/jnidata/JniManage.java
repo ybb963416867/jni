@@ -33,4 +33,6 @@ public class JniManage {
 
     native void  threadAsy();
 
+    native void  threadStop();
+
 }

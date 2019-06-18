@@ -21,13 +21,22 @@ class VideoTask {
 
 public:
     VideoTask();
-    void  countReduce();
-    void  countPlus();
+
+    void countReduce();
+
+    void countPlus();
+
     ~VideoTask();
 
 private:
-     int  i=1000;
-     bool isStart1= false;
-     pthread_t pthredID ;
-     pthread_t pthreadID1;
+    int i = 0;
+    //isConsumed 为true是已经消费了，否者为没有生产
+    bool isConsumed = false;
+    bool isStart1 = false;
+    pthread_t pthredID;
+    pthread_t pthreadID1;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond;
+    pthread_mutex_t mutex1;
+    pthread_cond_t cond1;
 };

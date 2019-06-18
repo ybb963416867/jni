@@ -121,12 +121,25 @@ Java_com_example_jnidata_JniManage_createThread(JNIEnv *env, jobject instance) {
 }extern "C"
 JNIEXPORT void JNICALL
 Java_com_example_jnidata_JniManage_threadAsy(JNIEnv *env, jobject instance) {
+    LOGE("threadAsy运行了");
     if (!videoTask){
         videoTask= new  VideoTask();
     }else {
+
         LOGE("已经有一个videoTask对象");
     }
 
 //   delete(videoTask);
 //   videoTask=0;
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_jnidata_JniManage_threadStop(JNIEnv *env, jobject instance) {
+    LOGE("threadStop运行了");
+    if (videoTask){
+        LOGE("videoTask不为空");
+        delete(videoTask);
+        videoTask=0;
+    } else {
+        LOGE("videoTask为空");
+    }
 }

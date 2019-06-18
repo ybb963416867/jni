@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.callObj).setOnClickListener(this);
         findViewById(R.id.thread).setOnClickListener(this);
         findViewById(R.id.threadAsy).setOnClickListener(this);
+        findViewById(R.id.threadStop).setOnClickListener(this);
         jniManage = new JniManage();
     }
 
@@ -47,7 +48,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.threadAsy:
                 jniManage.threadAsy();
-
+                break;
+            case R.id.threadStop:
+                new  Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        jniManage.threadStop();
+                    }
+                }).start();
                 break;
         }
     }
