@@ -41,11 +41,14 @@ VideoTask::~VideoTask() {
 
     LOGE("运行了VideoTask()销毁方法");
     isStart1 = false;
-    int   a=pthread_join(pthredID,0);
-    LOGE("a:%d",a);
-    pthread_join(pthreadID1,0);
-    int   b=pthread_join(pthredID,0);
-    LOGE("b:%d",b);
+//    int   a=pthread_join(pthredID,0);
+//    LOGE("a:%d",a);
+//    pthread_join(pthreadID1,0);
+//    int   b=pthread_join(pthredID,0);
+//    LOGE("b:%d",b);
+    //在子线程执行完毕之后，一般子线程中有一些资源没有需要回收这用这个等待子线程回收完毕，如果子线程没有需要回收的资源，那么主线程也没有必要等待子线程回收完毕，所以调用这个pthread_detach()
+    pthread_detach(pthredID);
+    pthread_detach(pthreadID1);
     pthread_cond_destroy(&cond);
     pthread_mutex_destroy(&mutex);
     pthread_cond_destroy(&cond1);
