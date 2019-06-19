@@ -65,7 +65,6 @@ void VideoTask::countReduce() {
         if (!isConsumed) {
             pthread_cond_wait(&cond, &mutex);
         } else {
-            sleep(0.9);
             i--;
             isConsumed = false;
             LOGE("i的值：%d", i);
@@ -79,7 +78,6 @@ void VideoTask::countPlus() {
     pthread_mutex_lock(&mutex1);
     while (isStart1) {
         if (!isConsumed) {
-            sleep(0.9);
             i++;
             LOGE("i的值：%d", i);
             isConsumed = true;

@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String TAG = "MainActivity";
     private JniManage jniManage;
+    private NativeClass nativeClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.thread).setOnClickListener(this);
         findViewById(R.id.threadAsy).setOnClickListener(this);
         findViewById(R.id.threadStop).setOnClickListener(this);
+        findViewById(R.id.btn_register).setOnClickListener(this);
         jniManage = new JniManage();
+        nativeClass = new NativeClass();
     }
 
 
@@ -56,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         jniManage.threadStop();
                     }
                 }).start();
+                break;
+            case R.id.btn_register:
+                nativeClass.getName();
+                nativeClass.getString(5);
                 break;
         }
     }

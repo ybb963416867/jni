@@ -38,4 +38,11 @@
         android:text="线程停止"
         />
 
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动态注册"
+        />
+
 </LinearLayout>
