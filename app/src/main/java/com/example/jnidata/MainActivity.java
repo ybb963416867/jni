@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 jniManage.threadAsy();
                 break;
             case R.id.threadStop:
-                new  Thread(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
                         jniManage.threadStop();

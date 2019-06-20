@@ -182,3 +182,5 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
     LOGE("注册成功");
     return JNI_VERSION_1_4;
 }
+
+

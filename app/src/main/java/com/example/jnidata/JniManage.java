@@ -35,4 +35,6 @@ public class JniManage {
 
     native void  threadStop();
 
+//    native void  threadThreadCallBack();
+
 }
